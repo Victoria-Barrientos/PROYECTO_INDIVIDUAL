@@ -11,8 +11,9 @@ const getAllGenres = async (req, res) => {
                 name: obj.name
             }
         });
-        const createdGenres = await Genre.bulkCreate(genres)
-        return res.status(200).json(createdGenres)
+        await Genre.bulkCreate(genres);
+        const allGenres = await Genre.findAll();
+        return res.status(200).json(allGenres);
     } catch(error) {
         if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
             return res.status(500).send({ message: 'Network error occurred' });
