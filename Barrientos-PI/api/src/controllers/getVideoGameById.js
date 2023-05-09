@@ -10,6 +10,7 @@ const getVideoGameById = async (req, res) => {
         }
         const { data } = await axios.get(`${URL}/${id}?key=7ef48bb5b05d4472b3fb6345a9456ed0`);
         const videoGame = {
+            id: game.id,
             name: data.name,
             rating: data.rating,
             description: data.description,

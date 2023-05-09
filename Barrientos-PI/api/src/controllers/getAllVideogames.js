@@ -10,7 +10,7 @@ const getAllVideoGames = async (req, res) => {
 
         const videoGame = data.results.map((game) => {
             return {
-                // id: game.id,
+                id: game.id,
                 name: game.name,
                 image: game.background_image,
                 // platforms: game.platforms,
