@@ -14,6 +14,7 @@ const postVideoGame = async (name, description, platforms, releaseDate, image, r
             where: { name: genres }
         })
         await newVideoGame.addGenre(genreNames);
+        return newVideoGame
     } catch(error) {
         throw error
     }

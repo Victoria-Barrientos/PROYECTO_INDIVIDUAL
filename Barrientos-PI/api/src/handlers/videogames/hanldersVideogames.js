@@ -56,16 +56,18 @@ const postVd = async (req, res) => {
         return res.status(400).json({ message: 'La calificación es obligatoria y debe ser un número entre 0 y 5' });
     }
     try {
-        await postVideoGame(name, description, platforms, releaseDate, image, rating, genres);
-        return res.status(201).json({ message: 'Videojuego creado correctamente'})
-    } catch(error) {
-        if (error.name === 'SequelizeValidationError') {
-            const errors = error.errors.map(err => err.message);
-            return res.status(400).json({ message: errors });
-        }
-        return res.status(500).send({ message: error.message });
+        const videogame = await postVideoGame(name, description, platforms, releaseDate, image, rating, genres);
+        console.log(videogame)
+        return res.status(201).json({ videogame, message: 'Videojuego creado correctamente' });
+    } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            return res.status(400).json({ message: error.errors[0].message });
+          } else {
+            return res.status(500).send({ message: error.message });
+          }
     }
-}
+};
+ 
 
 module.exports = {
     getVideogames,
