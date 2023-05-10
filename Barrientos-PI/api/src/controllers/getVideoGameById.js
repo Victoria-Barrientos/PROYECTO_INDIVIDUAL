@@ -1,25 +1,30 @@
 const axios = require('axios');
-const { API_KEY } = process.env;
-const URL = 'https://api.rawg.io/api/games'
+const { Videogame } = require('../db');
 
-const getVideoGameById = async (req, res) => {
+const getVideoGameById = async (id) => {
+    const { API_KEY } = process.env;
+    const URL = 'https://api.rawg.io/api/games';
+    const uuidRegex = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}$/;
+    const parsedId = parseInt(id)
     try {
-        const { id } = req.params;
-        if(!id) {
-            return res.status(400).send({ message: "No hay resultados para esta busqueda" });
+        if (typeof id === 'string' && uuidRegex.test(id)) {
+            const videoGame = await Videogame.findByPk(id)
+            return videoGame;
         }
-        const { data } = await axios.get(`${URL}/${id}?key=7ef48bb5b05d4472b3fb6345a9456ed0`);
-        const videoGame = {
-            id: game.id,
-            name: data.name,
-            rating: data.rating,
-            description: data.description,
-            releaseDate: data.released,
-            platforms: data.platforms
+        if(typeof Number.isInteger(id) && id > 0) {
+            const { data } = await axios.get(`${URL}/${id}?key=${API_KEY}`);
+            const videoGame = {
+                id: parsedId,
+                name: data.name,
+                rating: data.rating,
+                description: data.description,
+                releaseDate: data.released,
+                platforms: data.platforms
+            };
+            return videoGame;
         }
-        return res.status(200).json(videoGame)
     } catch(error) {
-        return res.status(500).send({ message: error.message });
+        throw error;
     }
 };
 

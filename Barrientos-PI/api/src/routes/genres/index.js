@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-const getAllGenres = require('../../controllers/getAllGenres')
+const getGenres = require('../../handlers/genres/hanldersGenres')
 
-router.get('/', async (req, res) => {
-    getAllGenres(req, res)} );
+router.get('/', getGenres);
 
 module.exports = router;

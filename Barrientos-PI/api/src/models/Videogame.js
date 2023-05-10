@@ -15,7 +15,6 @@ module.exports = (sequelize) => {
       unique: true,
       allowNull: false,
       validate: {
-        isAlphanumeric: true,
         len: [1, 25],
       },
     },
@@ -45,5 +44,6 @@ module.exports = (sequelize) => {
         max: 5,
       }
     }
-  });
+  },
+  { timestamps: false });
 };

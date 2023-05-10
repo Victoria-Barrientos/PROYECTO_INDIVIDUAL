@@ -1,7 +1,6 @@
 const {Genre, Videogame} = require('../db.js')
 
-const postVideoGame = async (req, res) => {
-    const { name, description, platforms, releaseDate, image, rating } = req.body;
+const postVideoGame = async (name, description, platforms, releaseDate, image, rating, genres) => {
     try {
         const newVideoGame = await Videogame.create({
             name,
@@ -11,14 +10,13 @@ const postVideoGame = async (req, res) => {
             image,
             rating
         });
-        // const genreNames = await Genre.findAll(
-
-        // )
-        // await newVideoGame.addGenre(genreNames)
+        const genreNames = await Genre.findAll({
+            where: { name: genres }
+        })
+        await newVideoGame.addGenre(genreNames);
     } catch(error) {
-        return res.status(400).send({ message: error.message });
+        throw error
     }
-
 };
 
 module.exports = postVideoGame

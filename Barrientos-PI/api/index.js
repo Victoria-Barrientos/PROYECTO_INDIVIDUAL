@@ -1,5 +1,4 @@
 const server = require('./src/app.js');
-const morgan = require('morgan');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.

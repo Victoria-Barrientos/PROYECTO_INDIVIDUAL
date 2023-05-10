@@ -1,11 +1,9 @@
-const { Genre } = require('../db.js')
-const URL = 'https://api.rawg.io/api/genres';
-const { API_KEY } = process.env;
+const getAllGenres = require('../../controllers/genres');
 
-const getAllGenres = async (req, res) => {
+const getGenres = async (req, res) => {
     try {
-        const allGenres = await Genre.findAll();
-        return res.status(200).json(allGenres);
+        const genres = await getAllGenres()
+        return res.status(200).json(genres);
     } catch(error) {
         if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
             return res.status(500).send({ message: 'Network error occurred' });
@@ -17,4 +15,4 @@ const getAllGenres = async (req, res) => {
     }
 };
 
-module.exports = getAllGenres
+module.exports = getGenres
