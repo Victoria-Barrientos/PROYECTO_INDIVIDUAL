@@ -17,6 +17,8 @@ const getVideoGameById = async (id) => {
                 id: parsedId,
                 name: data.name,
                 rating: data.rating,
+                image: data.background_image,
+                genre: data.genres,
                 description: data.description,
                 releaseDate: data.released,
                 platforms: data.platforms
