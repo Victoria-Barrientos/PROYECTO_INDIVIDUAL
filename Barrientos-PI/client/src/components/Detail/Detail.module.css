@@ -16,15 +16,7 @@
     margin-bottom: 10px;
     text-align: center;
   }
-  
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: aqua;
-  }
-  
+
   .imageContainer {
     width: 100%;
     text-align: center;
@@ -41,47 +33,37 @@
     margin-top: 20px;
   }
   
-  .info {
-    margin-bottom: 20px;
-  }
-  
-  .info > div {
-    margin-right: 20px;
-  }
-  
   .release,
-  .rating,
-  .platforms,
-  .genres {
+  .rating {
     display: flex;
     flex-direction: row;
     padding: 5px;
   }
 
+  .genres,
+  .platforms {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  }
+
   .subtitle {
     font-weight: bold;
     padding-right: 5px;
-    
-  }
-
-  .genresRow,
-  .platformsRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: space-around;
+    align-self: flex-start;
   }
 
   .genresRow ul,
   .platformsRow ul {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap; /* Add this rule */
     list-style-type: none;
-    
   }
-
+  
   .genresRow li,
-  .platformsRow li  {
+  .platformsRow li {
+    white-space: nowrap; /* Add this rule */
     margin-right: 10px;
     margin-bottom: 5px;
     padding: 10px 20px;
@@ -151,8 +133,6 @@
   div.backButtonContainer button.backButton {
     margin-top: 0.5em;
   }
-  
-  
   
   @media only screen and (max-width: 768px) {
     .title {

@@ -48,22 +48,23 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
               <span className={styles.subtitle}>Release date</span>
               <span>{videogame.releaseDate}</span>
             </div>
-          <div className={styles.genres}>
-                <span className={styles.subtitle} >Genres</span>
-                <div className={styles.genresRow}>
-                <ul>
-                    {videogame.genre?.map((genre) => {
-                    return <li key={genre.id}>{genre.name}</li>;
-                    })}
-                </ul>
-                </div>
-            </div>
+            
+            <div className={styles.genres}>
+            <span className={styles.subtitle} >Genres</span>
+                  <div className={styles.genresRow}>
+                  <ul>
+                      {videogame.genre?.map((genre) => {
+                      return <li key={genre.id}>{genre.name}</li>;
+                      })}
+                  </ul>
+                  </div>
+              </div>
             <div className={styles.platforms}>
             <span className={styles.subtitle}>Platforms</span>
                 <div className={styles.platformsRow}>
                 <ul>
                     {videogame.platforms?.map((platform) => {
-                    return <li key={platform.id}>{platform.name}</li>;
+                    return <li key={platform.id}>{platform.platform.name}</li>;
                     })}
                 </ul>
                 </div>
