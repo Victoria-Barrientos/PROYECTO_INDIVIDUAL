@@ -1,0 +1,16 @@
+.homeContainer {
+    padding: 1rem;
+  }
+  
+  .homeCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.2rem;
+  }
+
+  .homeContainer h2 {
+    margin: 0;
+  }
+  

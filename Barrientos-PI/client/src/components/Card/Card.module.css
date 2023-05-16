@@ -1,0 +1,155 @@
+/* 
+.card {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80%;
+  height: 150px;
+  padding: 20px;
+  margin: 15px auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardButton {
+  margin-top: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 35px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cardButton:hover {
+  background-color: #005dc1;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  width: 70%;
+}
+
+.cardDetails h3 {
+  font-size: 25px;
+  margin: 10px;
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardDetails ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  justify-content: flex-end;
+}
+
+.cardDetails ul li {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+ */
+
+ .card {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 150px;
+  padding: 20px;
+  margin: 15px auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardButton {
+  margin-top: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 35px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cardButton:hover {
+  background-color: #005dc1;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  width: 70%;
+}
+
+.cardDetails h3 {
+  font-size: 25px;
+  margin: 10px;
+}
+
+.cardDetails ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.cardDetails ul li {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+/* Add a class to the first li element in the list to change its margin */
+.cardDetails ul li:first-child {
+  margin-right: 20px;
+}

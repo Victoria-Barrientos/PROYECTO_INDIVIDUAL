@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #333;
+  color: #fff;
+}
+
+.container .link {
+  text-decoration: none;
+}
+
+.logo {
+  color: #fff;
+  font-size: 25px;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none; /* Add this line to remove the underline */
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  width: 1%;
+  height: 35px;
+  background-color: #ff0088;
+  color: #fff;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navButton:hover {
+  background-color: #c700d9;
+}
