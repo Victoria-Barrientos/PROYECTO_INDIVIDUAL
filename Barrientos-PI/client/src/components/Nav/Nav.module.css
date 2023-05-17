@@ -16,10 +16,16 @@
   font-size: 25px;
   margin: 0;
   cursor: pointer;
-  text-decoration: none; /* Add this line to remove the underline */
+  text-decoration: none;
 }
 
-.navButton {
+.navButtonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,12 +34,33 @@
   height: 35px;
   background-color: #ff0088;
   color: #fff;
-  font-size: 13px;
+  font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.navButton:hover {
+.logButton:hover {
+  background-color: #c700d9;
+}
+
+
+.newButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  min-width: 40px;
+  width: 1%;
+  height: 35px;
+  background-color: #ff0088;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newButton:hover {
   background-color: #c700d9;
 }
