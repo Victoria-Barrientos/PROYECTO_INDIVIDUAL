@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { FETCH_VIDEOGAMES, FETCH_BY_ID, FETCH_BY_NAME, CLEAN_DETAIL, ORDER_VIDEOGAMES, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING } from './actions-types';
+import { 
+  FETCH_VIDEOGAMES, FETCH_BY_ID, FETCH_BY_NAME, CLEAN_DETAIL,
+  ORDER_VIDEOGAMES, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING} from './actions-types';
 
 const URL_BASE = 'http://localhost:3001/videogames'
 

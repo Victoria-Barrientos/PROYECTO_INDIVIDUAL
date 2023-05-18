@@ -5,10 +5,11 @@ import { useParams } from "react-router-dom";
 import styles from './Detail.module.css';
 import { Link } from 'react-router-dom'
 
-export const Detail = ({videogame, fetchById, cleanDetail}) => {
+export const Detail = ({videogame, fetchById, cleanDetail}) => {  
 
     const { id } = useParams();
     const regex = /(<([^>]+)>)/ig;
+    const parsedDate = new Date(videogame.releaseDate).toLocaleDateString();
 
     const [showDescription, setShowDescription] = useState(false);
 
@@ -46,7 +47,7 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
             </div>
             <div className={styles.release}>
               <span className={styles.subtitle}>Release date</span>
-              <span>{videogame.releaseDate}</span>
+              <span>{parsedDate}</span>
             </div>
             
             <div className={styles.genres}>

@@ -19,7 +19,7 @@ export const Card = ({name, image, genres, id, rating}) => {
         </ul>
         <div className={styles.lastRow}>
           
-          <p><span>&#9733;</span>{rating}</p>
+          <p>{rating}<span>&#9733;</span></p>
           <Link to={`/detail/${id}`} className={styles.link}>
             <button className={styles.cardButton}>Learn more</button>
           </Link>

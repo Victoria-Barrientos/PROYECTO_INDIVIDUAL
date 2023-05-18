@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./NewGame.module.css";
 import { newVideogameValidation } from "../../validations";
+import { Card } from "../Card/Card";
 
 export default function NewGame() {
+
+    const URL_BASE = 'http://localhost:3001/videogames'
 
     const [form, setForm] = useState(
         {
@@ -20,6 +24,10 @@ export default function NewGame() {
         {}
     );
 
+    const [newVideoGame, setNewVideoGame] = useState(null);
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
+  
     const handleChange = (event) => {
         const property = event.target.name;
         let value = event.target.value;
@@ -30,18 +38,18 @@ export default function NewGame() {
             (option) => option.value
           );
         }
-      
-        setForm({
+        setForm(
+          {
           ...form,
           [property]: value,
-        });
-      
+          }
+        );
         newVideogameValidation(property, value, errors, setErrors);
       };
 
-      const handleSubmit = (event) => {
+      const handleSubmit = async (event) => {
         event.preventDefault();
-        if (Object.keys(errors).length === 0) {
+        if (!errors.length) {
           setForm({
             name: "",
             description: "",
@@ -53,10 +61,40 @@ export default function NewGame() {
           });
           setErrors({});
         }
+        try {
+          const { data } = await axios.post(`${URL_BASE}`, form, {
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+          setNewVideoGame(data.videoGame);
+          setMessage(data.message);
+        } catch (error) {
+          setError('Video game couldn\'t be created. Please, complete the form before submitting');
+        }
+      };
+
+      const handleCloseMessage = () => {
+        setMessage("");
+        setError("");
       };
 
     return (
         <div className={styles.newGameContainer}>
+        <span>
+            {message && (
+                <p className={styles.successMessage}>{message}<button onClick={handleCloseMessage} className={styles.closeButton}>
+                  X
+                </button></p>
+            )}
+            {error && (
+                  <p className={styles.errorMessage}>{error}<button onClick={handleCloseMessage} className={styles.closeButton}>
+                    X
+                  </button></p>
+            )}
+      </span>
+{/* 
+          <span>{message && <p className={styles.successMessage}>{message}</p> || error && <p  className={styles.errorMessage}>{error}</p>}</span> */}
           <h2>New Videogame</h2>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formColumn}>
@@ -64,19 +102,19 @@ export default function NewGame() {
                 <div className={styles.formGroup}>
                     <label>Name</label>
                     <input type="text" name="name" value={form.name} onChange={handleChange} />
-                    <div>{errors?.name}</div>
+                    {errors.name && <div>{errors.name}</div>}
                 </div>
 
                 <div className={styles.formGroup}>
                     <label>Description</label>
                     <textarea type="text" name="description" value={form.description} onChange={handleChange}></textarea>
-                    <div>{errors?.description}</div>
+                    {errors.description && <div>{errors.description}</div>}
                 </div>
 
                 <div className={styles.formGroup}>
                     <label>Image</label>
                     <input type="text" name="image" value={form.image} onChange={handleChange} />
-                    <div>{errors?.image}</div>
+                    {errors.image && <div>{errors.image}</div>}
                 </div>
 
                 <div className={styles.formGroup}>
@@ -100,7 +138,7 @@ export default function NewGame() {
                                 <option value="Xbox Series S/X">Xbox Series S/X</option>
                                 <option value="Xbox 360">Xbox 360</option>
                         </select>
-                        <div>{errors?.platforms}</div>
+                        {errors.platforms && <div>{errors.platforms}</div>}
                     </div>
                 </div>
 
@@ -111,14 +149,14 @@ export default function NewGame() {
                 <div  className={styles.formGroup}>
                     <label>Release Date</label>
                     <input type="date" name="releaseDate" value={form.releaseDate} onChange={handleChange} />
-                    <div>{errors?.releaseDate}</div>
+                    {errors.releaseDate && <div>{errors.releaseDate}</div>}
                 </div>
 
                 <div  className={styles.formGroup}>
                     <label>Rating</label>
                     <input type="range" min={0} max={5} step={1} name="rating" value={form.rating} onChange={handleChange} />
                     <span className={styles.ratingValue}>{form.rating}</span>
-                    <div>{errors?.rating}</div>
+                    {errors.rating && <div>{errors.rating}</div>}
                 </div>
 
 
@@ -147,7 +185,7 @@ export default function NewGame() {
                                 <option value="Sports">Sports</option>
                                 <option value="Strategy">Strategy</option>
                         </select>
-                        <div>{errors?.genres}</div>
+                        {errors.genres && <div>{errors.genres}</div>}
                   </div>
               </div>
 
