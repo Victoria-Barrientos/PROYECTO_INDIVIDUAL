@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 filteredVideogames: 
                     state.allVideogames.filter((game) =>
-                        game.genre?.some((genre) => genre.name === payload)
+                        game.genres?.some((genre) => genre === payload)
                     ),
             };
         case FILTER_BY_ORIGIN:
@@ -59,8 +59,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 filteredVideogames:
                     payload === "BEST"
-                        ? allVideogames2Copy.sort((a, b) => a.rating - b.rating)
-                        : allVideogames2Copy.sort((a, b) => b.rating - a.rating)
+                        ? allVideogames2Copy.sort((a, b) => b.rating - a.rating)
+                        : allVideogames2Copy.sort((a, b) => a.rating - b.rating)
             };
             default:
                 return {

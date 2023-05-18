@@ -57,13 +57,13 @@
   .platformsRow ul {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* Add this rule */
+    flex-wrap: wrap;
     list-style-type: none;
   }
   
   .genresRow li,
   .platformsRow li {
-    white-space: nowrap; /* Add this rule */
+    white-space: nowrap;
     margin-right: 10px;
     margin-bottom: 5px;
     padding: 10px 20px;

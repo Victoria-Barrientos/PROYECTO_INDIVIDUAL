@@ -53,8 +53,8 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
             <span className={styles.subtitle} >Genres</span>
                   <div className={styles.genresRow}>
                   <ul>
-                      {videogame.genre?.map((genre) => {
-                      return <li key={genre.id}>{genre.name}</li>;
+                      {videogame.genres?.map((genre, index) => {
+                      return <li key={index}>{genre}</li>;
                       })}
                   </ul>
                   </div>
@@ -63,8 +63,8 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
             <span className={styles.subtitle}>Platforms</span>
                 <div className={styles.platformsRow}>
                 <ul>
-                    {videogame.platforms?.map((platform) => {
-                    return <li key={platform.id}>{platform.platform.name}</li>;
+                    {videogame.platforms?.map((platform, index) => {
+                    return <li key={index}>{platform}</li>;
                     })}
                 </ul>
                 </div>

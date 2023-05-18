@@ -42,4 +42,48 @@ export const loginValidation = (property, value, errors, setErrors) => {
             setErrors({})
         }
     }
+};
+
+export const newVideogameValidation = (property, value, errors, setErrors) => {
+    if(property === "name") {
+        if(!value) {
+            setErrors({
+                ...errors,
+                name: "This field cant be empty"
+            })
+        }
+        if(typeof (value) === "string") {
+            setErrors({})
+        }
+    }
+    if(property === "description") {
+        if(!value) {
+            throw Error("This field cant be empty")
+        }
+    }
+    if(property === "releaseDate") {
+        if(!value) {
+            throw Error("This field cant be empty")
+        }
+    }
+    if(property === "rating") {
+        if(!value) {
+            throw Error("This field cant be empty")
+        }
+    }
+    if(property === "image") {
+        if(!value) {
+            throw Error("This field cant be empty")
+        }
+    }
+    if(property === "platforms") {
+        if(!value) {
+            throw Error("This field cant be empty")
+        }
+    }
+    if(property === "genres") {
+        if(!value) {
+            throw Error("This field cant be empty")
+        }
+    }
 }

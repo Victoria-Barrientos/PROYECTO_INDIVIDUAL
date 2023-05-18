@@ -28,7 +28,8 @@ export const Home = ({videogames, filteredVideogames, fetchVideogames}) => {
                           id={game.id}
                           name={game.name}
                           image={game.image}
-                          genre={game.genre}
+                          genres={game.genres}
+                          rating={game.rating}
                       />
                     );
                 })
@@ -43,7 +44,8 @@ export const Home = ({videogames, filteredVideogames, fetchVideogames}) => {
                   id={game.id}
                   name={game.name}
                   image={game.image}
-                  genre={game.genre}
+                  genres={game.genres}
+                  rating={game.rating}
                 />
               );
             })}

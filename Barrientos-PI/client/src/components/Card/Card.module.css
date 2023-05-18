@@ -101,6 +101,12 @@
   color: inherit;
 }
 
+.lastRow {
+  display: flex;
+  justify-content:space-between;
+  align-items: baseline;
+}
+
 .cardButton {
   margin-top: auto;
   margin-left: auto;
