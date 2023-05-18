@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { getVideogames, getVdByName, getVdById, postVd } = require('../../handlers/videogames/hanldersVideogames');
+const { getVideogames, getVdByName, getVdById, postVd } = require('../../handlers/videogames/handlersVideogames');
 
 router.get('/', getVideogames);
 router.get('/search', getVdByName);

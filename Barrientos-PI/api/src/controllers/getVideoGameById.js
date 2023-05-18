@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 
 const getVideoGameById = async (id) => {
     const { API_KEY } = process.env;
@@ -8,8 +8,14 @@ const getVideoGameById = async (id) => {
     const parsedId = parseInt(id)
     try {
         if (typeof id === 'string' && uuidRegex.test(id)) {
-            const videoGame = await Videogame.findByPk(id)
-            return videoGame;
+            const videoGame = await Videogame?.findByPk(id)
+            const genres = await videoGame?.getGenres({
+                attributes: ['name'],
+                through: { attributes: [] }
+              });
+              
+            videoGame.dataValues.genres = genres.map(genre => genre.name);
+            return videoGame
         }
         if(typeof Number.isInteger(id) && id > 0) {
             const { data } = await axios.get(`${URL}/${id}?key=${API_KEY}`);
@@ -18,10 +24,12 @@ const getVideoGameById = async (id) => {
                 name: data.name,
                 rating: data.rating,
                 image: data.background_image,
-                genre: data.genres,
+                genres: data.genres.map((genre) => genre.name),
                 description: data.description,
                 releaseDate: data.released,
-                platforms: data.platforms
+                platforms: data.platforms.map((platform) => {
+                    return platform.platform.name
+                }),
             };
             return videoGame;
         }
