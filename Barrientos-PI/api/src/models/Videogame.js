@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(500),
       allowNull: false,
       validate: {
-        len: [100, 500],
+        len: [10, 500],
       },
     },
     platforms: {
