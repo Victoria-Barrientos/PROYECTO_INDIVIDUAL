@@ -27,6 +27,7 @@ export default function NewGame() {
     const [newVideoGame, setNewVideoGame] = useState(null);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
+    const [isFormValid, setIsFormValid] = useState(false)
   
     const handleChange = (event) => {
         const property = event.target.name;
@@ -45,11 +46,11 @@ export default function NewGame() {
           }
         );
         newVideogameValidation(property, value, errors, setErrors);
-      };
+      };     
 
       const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!errors.length) {
+        if (isFormValid) {
           setForm({
             name: "",
             description: "",
@@ -74,6 +75,11 @@ export default function NewGame() {
         }
       };
 
+      useEffect(() => {
+        const isValid = (Object.keys(errors).length === Object.keys(form).length) && Object.values(errors).every((error) => error === "");
+        setIsFormValid(isValid);
+      }, [errors]);
+
       const handleCloseMessage = () => {
         setMessage("");
         setError("");
@@ -93,8 +99,6 @@ export default function NewGame() {
                   </button></p>
             )}
       </span>
-{/* 
-          <span>{message && <p className={styles.successMessage}>{message}</p> || error && <p  className={styles.errorMessage}>{error}</p>}</span> */}
           <h2>New Videogame</h2>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formColumn}>
@@ -119,6 +123,7 @@ export default function NewGame() {
 
                 <div className={styles.formGroup}>
                     <label>Platforms</label>
+                    <p>To select multiple, hold down the shift or ctrl key, then select with the mouse.</p>
                     <div className={styles.selectContainer}>
                         <select  name="platforms" multiple value={form.platforms}  className={styles.select} onChange={handleChange}>
                                 <option value="Android">Android</option>
@@ -138,8 +143,8 @@ export default function NewGame() {
                                 <option value="Xbox Series S/X">Xbox Series S/X</option>
                                 <option value="Xbox 360">Xbox 360</option>
                         </select>
-                        {errors.platforms && <div>{errors.platforms}</div>}
                     </div>
+                    {errors.platforms && <div>{errors.platforms}</div>}
                 </div>
 
             </div>
@@ -185,13 +190,13 @@ export default function NewGame() {
                                 <option value="Sports">Sports</option>
                                 <option value="Strategy">Strategy</option>
                         </select>
-                        {errors.genres && <div>{errors.genres}</div>}
                   </div>
+                  {errors.genres && <div>{errors.genres}</div>}
               </div>
 
               <div className={styles.formGroup}>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.gameButton} type="submit">Create</button>
+                    <button className={`${styles.gameButton} ${isFormValid ? '' : styles.disabledButton}`} type="submit" disabled={!isFormValid}>Create</button>
                 </div>
               </div>
 

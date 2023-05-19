@@ -154,3 +154,9 @@
   .buttonContainer .gameButton:hover {
     background-color: #26a95d;
   }
+
+  .buttonContainer .disabledButton {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

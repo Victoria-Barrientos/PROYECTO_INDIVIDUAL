@@ -18,6 +18,7 @@ export const Home = ({videogames, filteredVideogames, fetchVideogames}) => {
             <SearchBar></SearchBar>
             <Filter></Filter>
           </div>
+          <div>Here is the pagination component</div>
           <div className={styles.homeCardContainer}>
             {filteredVideogames.length === 0 
               ? ( <p>No matching results found.</p>)

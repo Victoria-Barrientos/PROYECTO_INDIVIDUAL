@@ -2,6 +2,7 @@ const regexEmail = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 const regexPassword = /^(?=.*?[a-z]).{8,16}$/;
 const regexNumbers = /[0-9]/;
 const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+const isValidDateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 export const loginValidation = (property, value, errors, setErrors) => {
     if (property === 'email') {
@@ -65,6 +66,12 @@ export const newVideogameValidation = (property, value, errors, setErrors) => {
                 [property]: "This field must be a string"
             })
         }
+        if(value.length < 1 || value.length > 25) {
+            setErrors({
+                ...errors,
+                [property]: "This field must contain between 1 and 25 characters"
+            })
+        }
         else {
             setErrors({
               ...errors,
@@ -99,16 +106,30 @@ export const newVideogameValidation = (property, value, errors, setErrors) => {
         }
     }
     if(property === "releaseDate") {
-        if(!value) {
+        if(value.length === 0) {
             setErrors({
                 ...errors,
                 [property]: "This field cant be empty"
             })
         }
-        if(isNaN(Date.parse(value))) {
+        if (!isValidDateRegex.test(value)) {
+            setErrors({
+              ...errors,
+              [property]: "Invalid date format",
+            });
+          }
+        else {
+            setErrors({
+              ...errors,
+              [property]: "",
+            });
+        }
+    }
+    if(property === "rating") {
+        if(!value) {
             setErrors({
                 ...errors,
-                [property]: "This field must be a Date"
+                [property]: "This field cant be empty"
             })
         }
         else {
@@ -118,24 +139,6 @@ export const newVideogameValidation = (property, value, errors, setErrors) => {
             });
         }
     }
-    // if (property === "rating") {
-    //     if (!value) {
-    //       setErrors({
-    //         ...errors,
-    //         [property]: "This field can't be empty",
-    //       });
-    //     } else if (typeof value !== "number" || value < 0 || value > 5) {
-    //       setErrors({
-    //         ...errors,
-    //         [property]: "Rating must be a number between 0 and 5",
-    //       });
-    //     } else {
-    //       setErrors({
-    //         ...errors,
-    //         [property]: "",
-    //       });
-    //     }
-    //   }     
     if (property === "image") {
         if (!value) {
           setErrors({
@@ -160,7 +163,7 @@ export const newVideogameValidation = (property, value, errors, setErrors) => {
           }
       }
     if(property === "platforms") {
-        if(!value.length) {
+        if(value.length === 0) {
             setErrors({
                 ...errors,
                 [property]: "This field cant be empty"
@@ -174,7 +177,7 @@ export const newVideogameValidation = (property, value, errors, setErrors) => {
         }
     }
     if(property === "genres") {
-        if(!value.length) {
+        if(value.length === 0) {
             setErrors({
                 ...errors,
                 [property]: "This field cant be empty"
