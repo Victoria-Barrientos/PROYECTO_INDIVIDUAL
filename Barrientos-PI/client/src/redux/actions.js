@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { 
   FETCH_VIDEOGAMES, FETCH_BY_ID, FETCH_BY_NAME, CLEAN_DETAIL,
-  ORDER_VIDEOGAMES, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING} from './actions-types';
+  FILTER_BY_ALPHA, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING, ORDER_VIDEOGAMES} from './actions-types';
 
 const URL_BASE = 'http://localhost:3001/videogames'
 
@@ -57,30 +57,39 @@ export const cleanDetail = () => {
   }
 };
 
-export const orderVideogames = (order) => {
+export const filterByLetter = (selectedFilters) => {
   return {
-    type: ORDER_VIDEOGAMES,
-    payload: order
+    type: FILTER_BY_ALPHA,
+    payload: selectedFilters.Alpha
   }
 };
 
-export const filterByGenre = (genre) => {
-  return {
-    type: FILTER_BY_GENRE,
-    payload: genre
-  }
-};
-
-export const filterByOrigin = (origin) => {
-  return {
-    type: FILTER_BY_ORIGIN,
-    payload: origin
-  }
-};
-
-export const filterByRating = (rating) => {
+export const filterByRating = (selectedFilters) => {
   return {
     type: FILTER_BY_RATING,
-    payload: rating
+    payload: selectedFilters.Rating
   }
 };
+
+export const filterByGenre = (selectedFilters) => {
+  return {
+    type: FILTER_BY_GENRE,
+    payload: selectedFilters.Genre
+  }
+};
+
+export const filterByOrigin = (selectedFilters) => {
+  return {
+    type: FILTER_BY_ORIGIN,
+    payload: selectedFilters.Origin
+  }
+};
+
+// export const orderVideogames = (selectedOrder) => {
+//   return {
+//     type: ORDER_VIDEOGAMES,
+//     payload: selectedOrder
+//   }
+// };
+
+
