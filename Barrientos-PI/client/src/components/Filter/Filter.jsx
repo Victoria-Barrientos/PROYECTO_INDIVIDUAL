@@ -34,56 +34,60 @@ export const Filter = ({filterByGenre, filterByOrigin, filterByLetter, filterByR
       }, [selectedFilters, filterByLetter, filterByRating, filterByGenre, filterByOrigin]);
 
   return (
-    <div className={styles.filterContainer}>
-
-        <div className={styles.selectContainer}>
-        <label>Order</label>
-        <select value={selectedOrder} onChange={handleOrderChange} className={styles.select}>
-            <option></option>
-            <option value="Alpha">Alphabetically</option>
-            <option value="Rating">Rating</option>
-        </select>
-        </div>
-
-        {
-            selectedOrder === "Rating" && (
+    <div className={styles.filterComponent}>
+        <div className={styles.filterContainer}>
+        <label className={styles.filterLabel}>Order by</label>
+            <div className={styles.filterSection}>
                 <div className={styles.selectContainer}>
-                    <label>Rating</label>
-                    <select name="Rating" value={selectedFilters.Rating} onChange={handleFilters} className={styles.select}>
-                        <option></option>
-                        <option value="BEST">Best - Worst</option>
-                        <option value="WORST">Worst - Best</option>
-                    </select>
-                </div>
-            )
-        }
-
-        {
-             selectedOrder === "Alpha" && (
-                <div className={styles.selectContainer}>
-                    <label>Alphabetically</label>
-                    <select name="Alpha" value={selectedFilters.Alpha} onChange={handleFilters} className={styles.select}>
-                        <option></option>
-                        <option value="A">A-Z</option>
-                        <option value="D">Z-A</option>
-                    </select>
-                </div>
-            )
-        }
-
-        <label>Filter by</label>
-        <div className={styles.filterSection}>
-    
-            <div className={styles.selectContainer}>
-                <label>Origin</label>
-                <select name="Origin" value={selectedFilters.Origin} onChange={handleFilters} className={styles.select}>
+                <select value={selectedOrder} onChange={handleOrderChange} className={styles.select}>
                     <option></option>
-                    <option value="API">API</option>
-                    <option value="DB">DB</option>
+                    <option value="Alpha">Alphabetically</option>
+                    <option value="Rating">Rating</option>
                 </select>
+                </div>
+
+                {
+                    selectedOrder === "Rating" && (
+                        <div className={styles.selectContainer}>
+                            <label>Rating</label>
+                            <select name="Rating" value={selectedFilters.Rating} onChange={handleFilters} className={styles.select}>
+                                <option></option>
+                                <option value="BEST">Best - Worst</option>
+                                <option value="WORST">Worst - Best</option>
+                            </select>
+                        </div>
+                    )
+                }
+
+                {
+                    selectedOrder === "Alpha" && (
+                        <div className={styles.selectContainer}>
+                            <label>Alphabetically</label>
+                            <select name="Alpha" value={selectedFilters.Alpha} onChange={handleFilters} className={styles.select}>
+                                <option></option>
+                                <option value="A">A-Z</option>
+                                <option value="D">Z-A</option>
+                            </select>
+                        </div>
+                    )
+                }
+
             </div>
-    
-            <div className={styles.selectContainer}>
+        </div>
+            
+            <div className={styles.filterContainer}>
+            <label className={styles.filterLabel}>Filter by</label>
+            <div className={styles.filterSection}>
+                <div className={styles.selectContainer}>
+                    <label>Origin</label>
+                    <select name="Origin" value={selectedFilters.Origin} onChange={handleFilters} className={styles.select}>
+                        <option></option>
+                        <option value="API">API</option>
+                        <option value="DB">DB</option>
+                    </select>
+                </div>
+                
+                <div className={styles.selectContainer}>
                 <label>Genres</label>
                 <select name="Genre" value={selectedFilters.Genre} onChange={handleFilters} className={styles.select}>
                     <option></option>
@@ -107,9 +111,13 @@ export const Filter = ({filterByGenre, filterByOrigin, filterByLetter, filterByR
                     <option value="Sports">Sports</option>
                     <option value="Strategy">Strategy</option>
                 </select>
+                </div>
+
             </div>
+            </div>
+        
+
         </div>
-    </div>
   );
 }
 

@@ -1,9 +1,21 @@
+.filterComponent {
+  display: flex ;
+  justify-content: center;
+}
+
 .filterContainer {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     margin: 0rem;
+  }
+
+  .filterSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   
   .selectContainer {
@@ -15,6 +27,47 @@
   
   label {
     margin-right: 0.5rem;
+  }
+  
+  .select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+  }
+  .filterComponent {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .filterContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0rem;
+  }
+  
+  .filterSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .selectContainer {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    cursor: pointer;
+  }
+  
+  .filterLabel {
+    margin-right: 0.5rem;
+    font-weight: bold;
   }
   
   .select {

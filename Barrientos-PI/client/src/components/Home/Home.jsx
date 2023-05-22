@@ -32,19 +32,19 @@ export const Home = ({videogames, filteredVideogames, fetchVideogames}) => {
     
     return (
         <div className={styles.homeContainer}>
-          <div>
-            <SearchBar></SearchBar>
-            <Filter></Filter>
+          <div className={styles.homeBar}>
+              <SearchBar></SearchBar>
+              <Filter></Filter>
           </div>
           <div>
-  <button onClick={goToPreviousPage} disabled={currentPage === 1} className={styles.paginationButton}>
-    Previous </button>
-  <span className={styles.currentPage}>{currentPage}</span>
-  <button onClick={goToNextPage} disabled={indexOfLastItem >= videogames.length} className={styles.paginationButton}>
-    Next </button>
-</div>
-
-          <div className={styles.homeCardContainer}>
+              <button onClick={goToPreviousPage} disabled={currentPage === 1} className={styles.paginationButton}>
+              &#8592;</button>
+              <span className={styles.currentPage}>{currentPage}</span>
+              <button onClick={goToNextPage} disabled={indexOfLastItem >= videogames.length} className={styles.paginationButton}>
+              &#8594;</button>
+          </div>
+        
+        <div className={styles.homeCardContainer}>
           {currentGames.length === 0 ? (
           <p>No matching results found.</p>
         ) : (
