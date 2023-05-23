@@ -12,7 +12,7 @@ export const SearchBar = ({fetchByName}) => {
 
     return (
         <div className={styles.searchContainer}>
-          <label htmlFor="search-input" className={styles.searchLabel}> Search
+          <label htmlFor="search-input" className={styles.searchLabel}>Search
           </label>
           <input id="search-input" type="search" className={styles.searchInput} onChange={handleChange} />
         </div>
