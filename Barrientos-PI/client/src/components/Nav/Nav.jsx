@@ -6,6 +6,7 @@ export default function Nav() {
     <div className={styles.container}>
       <Link to='/' className={styles.link}><h1 className={styles.logo}>Pixel Playground</h1></Link>
       <div className={styles.navButtonContainer}>
+      <Link to='/saved' className={styles.link}><h1 className={styles.savedButton}>Saved</h1></Link>
       <Link to='/new' className={styles.link}><h1 className={styles.newButton}>+</h1></Link>
       <Link to='/login' className={styles.link}><button className={styles.logButton} id="loginBtn">Login</button></Link>
       </div>

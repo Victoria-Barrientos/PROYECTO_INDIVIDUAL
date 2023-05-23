@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { 
   FETCH_VIDEOGAMES, FETCH_BY_ID, FETCH_BY_NAME, CLEAN_DETAIL,
-  FILTER_BY_ALPHA, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING, ORDER_VIDEOGAMES} from './actions-types';
+  FILTER_BY_ALPHA, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING,
+  SAVE_VIDEOGAME, REMOVE_SAVED_VIDEOGAME} from './actions-types';
 
 const URL_BASE = 'http://localhost:3001/videogames'
 
@@ -56,6 +57,20 @@ export const cleanDetail = () => {
     type: CLEAN_DETAIL
   }
 };
+
+export const saveVideogame = (videogame) => {
+  return {
+    type: SAVE_VIDEOGAME,
+    payload: videogame
+  }
+};
+
+export const removeSavedVideogame = (id) => {
+  return {
+    type: REMOVE_SAVED_VIDEOGAME,
+    payload: id
+  }
+}
 
 export const filterByLetter = (selectedFilters) => {
   return {

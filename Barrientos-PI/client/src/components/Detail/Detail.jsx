@@ -1,13 +1,14 @@
 import React, { useEffect, useState} from "react";
-import { fetchById, cleanDetail } from "../../redux/actions";
+import { fetchById, cleanDetail, saveVideogame, removeSavedVideogame } from "../../redux/actions";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from './Detail.module.css';
 import { Link } from 'react-router-dom'
 
-export const Detail = ({videogame, fetchById, cleanDetail}) => {  
+export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, saveVideogame, removeSavedVideogame}) => {  
 
     const { id } = useParams();
+    const parsedId = parseInt(id)
     const regex = /(<([^>]+)>)/ig;
     const parsedDate = new Date(videogame.releaseDate).toLocaleDateString();
 
@@ -16,6 +17,17 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
     const toggleDescription = () => {
         setShowDescription(!showDescription);
     };
+   
+    const isGameSaved = savedVideogames.some((savedGame) => savedGame.id === videogame.id);
+    console.log(isGameSaved)
+
+    const handleSave = (videogame) => {
+      if (isGameSaved) {
+        removeSavedVideogame(videogame.id);
+      } else {
+        saveVideogame(videogame);
+      }
+    }
 
     useEffect(() => {
         fetchById(id)
@@ -80,17 +92,19 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
                   ? videogame.description?.replace(regex, "")
                   : videogame.description?.replace(regex, "")?.substring(0, 200) + "..."}
               </p>
-              {videogame.description?.length > 200 && (
-                <button className={styles.readMore} onClick={toggleDescription}>
-                  {showDescription ? "Read less" : "Read more"}
-                </button>
-              )}
-            </div>
-            <div className={styles.saveButtonRow}>
-                {typeof id === 'number' && !Number.isNaN(id) && !id.includes('-') && (
-                  <button className={styles.saveButton}>Save</button>
+                <div className={styles.buttonsRow}>
+                {videogame.description?.length > 200 && (
+                  <button className={styles.readMore} onClick={toggleDescription}>
+                    {showDescription ? "Read less" : "Read more"}
+                  </button>
                 )}
+                {Number.isNaN(parsedId) && id.includes('-') && (
+                    <button className={styles.saveButton} onClick={() => handleSave(videogame)}>
+                      {isGameSaved ? "Remove from Saved" : "Save"}</button>
+                )}
+                </div>
             </div>
+            
 
           </div>
         </div>
@@ -100,14 +114,17 @@ export const Detail = ({videogame, fetchById, cleanDetail}) => {
 
 const mapStateToProps = (state) => {
     return {
-      videogame: state.detailedVideogame
+      videogame: state.detailedVideogame,
+      savedVideogames: state.savedVideogames
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchById: (id) => { dispatch(fetchById(id))},
-        cleanDetail: () => { dispatch(cleanDetail())}
+        cleanDetail: () => { dispatch(cleanDetail())},
+        saveVideogame: (videogame) => { dispatch(saveVideogame(videogame))},
+        removeSavedVideogame: (id) =>{ dispatch(removeSavedVideogame(id))}
     };
 }
 
