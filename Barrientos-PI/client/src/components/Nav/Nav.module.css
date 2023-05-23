@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 0px 10px;
   background-color: #333;
   color: #fff;
 }
@@ -14,72 +14,34 @@
 .logo {
   color: #fff;
   font-size: 25px;
+  font-weight: 200;
   cursor: pointer;
   text-decoration: none;
 }
 
-.navButtonContainer {
+.buttonContainer {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
-.logButton {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 80px;
   width: 1%;
-  height: 35px;
-  background-color: #ff0088;
   color: #fff;
   font-size: 17px;
-  font-weight: 200 ! important;
-  border: none;
-  border-radius: 5px;
+  font-weight: 200;
+  padding: 15px;
+  border-bottom: 2px solid transparent;
+  margin-left: 4px;
   cursor: pointer;
 }
 
-.logButton:hover {
-  background-color: #c700d9;
+.button:hover {
+  color: #ff0088;
+  border-bottom: 2px solid #ff0088;
 }
 
 
-.newButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  min-width: 40px;
-  width: 1%;
-  height: 35px;
-  background-color: #ff0088;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 300;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.newButton:hover {
-  background-color: #c700d9;
-}
-
-.savedButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  min-width: 40px;
-  min-width: 80px;
-  width: 4%;
-  height: 35px;
-  background-color: #ff0088;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 400;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
