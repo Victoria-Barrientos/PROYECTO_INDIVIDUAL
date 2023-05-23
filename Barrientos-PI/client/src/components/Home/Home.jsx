@@ -36,7 +36,7 @@ export const Home = ({videogames, filteredVideogames, fetchVideogames}) => {
               <SearchBar></SearchBar>
               <Filter></Filter>
           </div>
-          <div>
+          <div className={styles.paginationBox}>
               <button onClick={goToPreviousPage} disabled={currentPage === 1} className={styles.paginationButton}>
               &#8592;</button>
               <span className={styles.currentPage}>{currentPage}</span>
