@@ -10,7 +10,7 @@ export default function Nav() {
       <Link to='/home' className={styles.link}><h1 className={styles.button}>Home</h1></Link>
       <Link to='/saved' className={styles.link}><h1 className={styles.button}>Saved</h1></Link>
       <Link to='/new' className={styles.link}><h1 className={styles.button}>New</h1></Link>
-      <Link to='/login' className={styles.link}><h1 className={styles.button} id="loginBtn">Login</h1></Link>
+      {/* <Link to='/login' className={styles.link}><h1 className={styles.button} id="loginBtn">Login</h1></Link> */}
       </div>
     </div>
   );

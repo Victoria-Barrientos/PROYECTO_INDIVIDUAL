@@ -99,12 +99,3 @@ export const filterByOrigin = (selectedFilters) => {
     payload: selectedFilters.Origin
   }
 };
-
-// export const orderVideogames = (selectedOrder) => {
-//   return {
-//     type: ORDER_VIDEOGAMES,
-//     payload: selectedOrder
-//   }
-// };
-
-

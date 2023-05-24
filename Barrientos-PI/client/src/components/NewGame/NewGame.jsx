@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./NewGame.module.css";
 import { newVideogameValidation } from "../../validations";
-import { Card } from "../Card/Card";
 
 export default function NewGame() {
 
@@ -78,7 +77,7 @@ export default function NewGame() {
       useEffect(() => {
         const isValid = (Object.keys(errors).length === Object.keys(form).length) && Object.values(errors).every((error) => error === "");
         setIsFormValid(isValid);
-      }, [errors]);
+      }, [errors, form]);
 
       const handleCloseMessage = () => {
         setMessage("");

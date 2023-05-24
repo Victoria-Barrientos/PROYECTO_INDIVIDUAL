@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { loginValidation } from "../../validations";
 
-export const Login = () => {
+export const Login = ({login}) => {
 
+    const [isFormValid, setIsFormValid] = useState(false);
+    
     const [form, setForm] = useState(
         {
         email: "",
@@ -27,12 +29,10 @@ export const Login = () => {
         loginValidation(property, value, errors, setErrors)
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if(!form.email || !form.password){ return alert ('Fields cant be empty')}
-        if(form.email && !form.password) return alert ('Please, write your password')
-        if (errors.length > 0) return alert('Please, fill in all the fields before submitting')
-        if (!errors.length) {
+        if (isFormValid) {
+        login(form)
         setForm({
             email: "",
             password: ""
@@ -41,8 +41,13 @@ export const Login = () => {
         setErrors(
             {}
         )
-    }
+        }
     };
+
+    useEffect(() => {
+      const isValid = (Object.keys(errors).length === Object.keys(form).length) && Object.values(errors).every((error) => error === "");
+      setIsFormValid(isValid);
+    }, [errors, form]);
 
     return (
         <div className={styles.container}>
@@ -62,7 +67,7 @@ export const Login = () => {
               <div>{errors?.password}</div>
             </div>
             <div>
-              <button type="submit">Login</button>
+              <button type="submit" disabled={!isFormValid} className={`${styles.loginButton} ${isFormValid ? '' : styles.disabledLoginButton}`}>Login</button>
             </div>
           </form>
         </div>

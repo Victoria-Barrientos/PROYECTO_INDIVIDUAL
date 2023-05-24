@@ -44,7 +44,7 @@
     border-radius: 4px;
   }
   
-  button[type="submit"] {
+  .loginButton{
     background-color:#ff0088;
     color: #fff;
     padding: 10px 20px;
@@ -53,8 +53,13 @@
     font-size: 16px;
     cursor: pointer;
   }
+
+  .disabledLoginButton {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   
-  button[type="submit"]:hover {
+  .loginButton:hover {
     background-color: #c700d9;
   }
   
