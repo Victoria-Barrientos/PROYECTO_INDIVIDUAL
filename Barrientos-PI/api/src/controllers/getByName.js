@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 const { Op } = require('sequelize');
 
 const getByName = async (name) => {
@@ -24,9 +24,19 @@ const getByName = async (name) => {
                 [Op.iLike]: `%${name}%`,
               },
             },
+            include: [{
+              model: Genre,
+              attributes: ['name'],
+              through: { attributes: [] },
+            }],
           });
+
+        const matchingGamesWithGenres = matchingGamesInDb.map((videoGame) => {
+          const genres = videoGame.genres.map((genre) => genre.name);
+          return { ...videoGame.toJSON(), genres: genres };
+        });
         
-        const allMatchingGames = [ ...matchingGamesInDb, ...matchingGames].slice(0,15);
+        const allMatchingGames = [ ...matchingGamesWithGenres, ...matchingGames].slice(0,15);
         return allMatchingGames
     } catch(error) {
         throw error;
