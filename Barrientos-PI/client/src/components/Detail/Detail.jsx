@@ -28,6 +28,10 @@ export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, save
       }
     }
 
+    const handleDelete = (id) => {
+      // deleteVideogame(id)
+    }
+
     useEffect(() => {
         fetchById(id)
         return cleanDetail()
@@ -91,17 +95,24 @@ export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, save
                   ? videogame.description?.replace(regex, "")
                   : videogame.description?.replace(regex, "")?.substring(0, 200) + "..."}
               </p>
-                <div className={styles.buttonsRow}>
+                <div>
                 {videogame.description?.length > 200 && (
                   <button className={styles.readMore} onClick={toggleDescription}>
                     {showDescription ? "Read less" : "Read more"}
                   </button>
                 )}
-                {Number.isNaN(parsedId) && id.includes('-') && (
-                    <button className={styles.saveButton} onClick={() => handleSave(videogame)}>
-                      {isGameSaved ? "Remove from Saved" : "Save"}</button>
-                )}
                 </div>
+                {
+                  Number.isNaN(parsedId) && id.includes('-') 
+                    && (
+                      <div className={styles.buttonsRow}>
+                      <button className={styles.saveButton} onClick={() => handleSave(videogame)}>
+                        {isGameSaved ? "Remove from Saved" : "Save"}</button>
+                      <button className={styles.deleteButton} onClick={() => handleDelete(id)}>Delete</button>
+                      </div>
+                  )
+                }
+            
             </div>
             
 

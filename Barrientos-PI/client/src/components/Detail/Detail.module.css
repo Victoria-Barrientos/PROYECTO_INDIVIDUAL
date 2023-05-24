@@ -67,7 +67,7 @@
     margin-right: 10px;
     margin-bottom: 5px;
     padding: 10px 20px;
-    background-color: #c700d9;
+    background-color: #ff0088;;
     border-radius: 5px;
     font-size: 16px;
     color: white;
@@ -77,10 +77,11 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
+    margin-top: 10px;
   }
   
   .saveButton {
-    background-color: #c700d9;
+    background-color: #2ecc71;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -90,7 +91,21 @@
   }
   
   .saveButton:hover {
-    background-color: #b500c4;
+    background-color: #26a95d;
+  }
+
+  .deleteButton {
+    background-color: #ec3312;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #d63316;
   }
   
   .readMore {
