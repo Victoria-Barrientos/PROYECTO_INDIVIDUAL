@@ -102,7 +102,6 @@ return (
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.savedVideogames)
     return {
       videogames: state.allVideogames,
       filteredVideogames: state.filteredVideogames,

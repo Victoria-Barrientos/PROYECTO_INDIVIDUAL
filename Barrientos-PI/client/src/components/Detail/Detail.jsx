@@ -19,7 +19,6 @@ export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, save
     };
    
     const isGameSaved = savedVideogames.some((savedGame) => savedGame.id === videogame.id);
-    console.log(isGameSaved)
 
     const handleSave = (videogame) => {
       if (isGameSaved) {
