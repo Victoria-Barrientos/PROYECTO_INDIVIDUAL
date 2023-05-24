@@ -1,4 +1,4 @@
-const { getAllVideoGames, getByName, getVideoGameById, postVideoGame} = require('../../controllers/videogames');
+const { getAllVideoGames, getByName, getVideoGameById, postVideoGame, deleteVideoGame} = require('../../controllers/videogames');
 
 const getVideogames = async (req, res) => {
     try {
@@ -41,6 +41,19 @@ const getVdById = async (req, res) => {
     }
 };
 
+const deleteVd = async (req, res) => {
+    const { id } = req.params;
+    try {
+        if(!id) {
+            return res.status(400).send({ message: "Please, provide a valid ID" });
+        }
+        await deleteVideoGame(id);
+        res.status(204).send({ message: "Successfully deleted videogame"});
+    } catch(error) {
+        return res.status(500).send({ message: error.message });
+    }
+}
+
 const postVd = async (req, res) => {
     const { name, description, platforms, releaseDate, image, rating, genres } = req.body;
     if (!name || typeof name !== 'string') {
@@ -66,7 +79,6 @@ const postVd = async (req, res) => {
     }
     try {
         const videogame = await postVideoGame(name, description, platforms, releaseDate, image, rating, genres);
-        console.log(videogame)
         return res.status(201).json({ videogame, message: 'Successfully created videogame!' });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
@@ -82,5 +94,6 @@ module.exports = {
     getVideogames,
     getVdByName,
     getVdById,
-    postVd
+    postVd,
+    deleteVd
 }
