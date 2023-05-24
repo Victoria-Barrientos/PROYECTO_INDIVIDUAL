@@ -25,7 +25,7 @@
     cursor: pointer;
   }
   
-  label {
+  .selectContainer label {
     margin-right: 0.5rem;
   }
   
@@ -61,13 +61,12 @@
   .selectContainer {
     display: flex;
     align-items: center;
-    margin: 1rem;
     cursor: pointer;
   }
   
   .filterLabel {
     margin-bottom: 10px;
-    font-weight: light;
+    font-weight: bolder;
   }
   
   .select {

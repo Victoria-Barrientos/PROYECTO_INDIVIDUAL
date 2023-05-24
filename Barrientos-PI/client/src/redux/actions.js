@@ -1,9 +1,18 @@
 import axios from 'axios';
 import { 
-  FETCH_VIDEOGAMES, FETCH_BY_ID, FETCH_BY_NAME, CLEAN_DETAIL,
-  FILTER_BY_ALPHA, FILTER_BY_GENRE, FILTER_BY_ORIGIN, FILTER_BY_RATING,
-  SAVE_VIDEOGAME, REMOVE_SAVED_VIDEOGAME,
-  SET_SELECTED_FILTERS, SET_SELECTED_ORDER} from './actions-types';
+  FETCH_VIDEOGAMES,
+  FETCH_BY_ID,
+  FETCH_BY_NAME,
+  CLEAN_DETAIL,
+  FILTER_BY_ALPHA,
+  FILTER_BY_GENRE,
+  FILTER_BY_ORIGIN,
+  FILTER_BY_RATING,
+  SAVE_VIDEOGAME,
+  REMOVE_SAVED_VIDEOGAME,
+  SET_SELECTED_FILTERS,
+  SET_SELECTED_ORDER,
+  DESTROY_VIDEOGAME} from './actions-types';
 
 const URL_BASE = 'http://localhost:3001/videogames'
 
@@ -48,6 +57,20 @@ export const fetchByName = (name) => {
         payload: data
       })
     } catch (error) {
+      console.log(error.message);
+    }
+  }
+};
+
+export const destroyVideoGame = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${URL_BASE}/${id}`);
+      return dispatch({
+        type: DESTROY_VIDEOGAME,
+        payload: id,
+      });
+    } catch(error) {
       console.log(error.message);
     }
   }
@@ -101,8 +124,6 @@ export const filterByOrigin = (selectedFilters) => {
   }
 };
 
-/// new stuff
-
 export const setSelectedFilters = (selectedFilters) => {
   return {
     type: SET_SELECTED_FILTERS,
@@ -116,3 +137,5 @@ export const setSelectedOrder = (order) => {
     payload: order,
   };
 };
+
+

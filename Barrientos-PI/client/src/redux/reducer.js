@@ -10,7 +10,8 @@ import {
     SAVE_VIDEOGAME,
     REMOVE_SAVED_VIDEOGAME,
     SET_SELECTED_ORDER,
-    SET_SELECTED_FILTERS
+    SET_SELECTED_FILTERS,
+    DESTROY_VIDEOGAME
   } from "./actions-types";
   
   const initialState = {
@@ -112,6 +113,13 @@ import {
           ...state,
           selectedFilters: payload,
         };
+      case DESTROY_VIDEOGAME:
+        const updatedVideoGames = state.allVideogames.filter((game) => game.id !== payload);
+        return {
+          ...state,
+          selectedFilters: {},
+          allVideogames: updatedVideoGames
+        }
       default:
         return state;
     }

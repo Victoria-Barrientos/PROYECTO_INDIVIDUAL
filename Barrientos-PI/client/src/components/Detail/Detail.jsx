@@ -1,16 +1,17 @@
 import React, { useEffect, useState} from "react";
-import { fetchById, cleanDetail, saveVideogame, removeSavedVideogame } from "../../redux/actions";
+import { fetchById, cleanDetail, saveVideogame, removeSavedVideogame, destroyVideoGame } from "../../redux/actions";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from './Detail.module.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, saveVideogame, removeSavedVideogame}) => {  
+export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, saveVideogame, removeSavedVideogame, destroyVideoGame}) => {  
 
     const { id } = useParams();
-    const parsedId = parseInt(id)
     const regex = /(<([^>]+)>)/ig;
+    const UUIDRegex = /^[0-9a-fA-F]*-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
     const parsedDate = new Date(videogame.releaseDate).toLocaleDateString();
+    const navigate = useNavigate()
 
     const [showDescription, setShowDescription] = useState(false);
 
@@ -28,8 +29,13 @@ export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, save
       }
     }
 
-    const handleDelete = (id) => {
-      // deleteVideogame(id)
+    const handleDelete = async (id) => {
+      try {
+        destroyVideoGame(id)
+        navigate('/home');
+      } catch(error) {
+        throw error
+      }
     }
 
     useEffect(() => {
@@ -103,7 +109,7 @@ export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, save
                 )}
                 </div>
                 {
-                  Number.isNaN(parsedId) && id.includes('-') 
+                  UUIDRegex.test(id) && id.includes('-') 
                     && (
                       <div className={styles.buttonsRow}>
                       <button className={styles.saveButton} onClick={() => handleSave(videogame)}>
@@ -134,7 +140,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchById: (id) => { dispatch(fetchById(id))},
         cleanDetail: () => { dispatch(cleanDetail())},
         saveVideogame: (videogame) => { dispatch(saveVideogame(videogame))},
-        removeSavedVideogame: (id) =>{ dispatch(removeSavedVideogame(id))}
+        removeSavedVideogame: (id) => { dispatch(removeSavedVideogame(id))},
+        destroyVideoGame: (id) => { dispatch(destroyVideoGame(id))}
     };
 }
 
