@@ -8,14 +8,18 @@ import {
     FILTER_BY_ORIGIN,
     FILTER_BY_RATING,
     SAVE_VIDEOGAME,
-    REMOVE_SAVED_VIDEOGAME
+    REMOVE_SAVED_VIDEOGAME,
+    SET_SELECTED_ORDER,
+    SET_SELECTED_FILTERS
   } from "./actions-types";
   
   const initialState = {
     allVideogames: [],
     filteredVideogames: [],
     detailedVideogame: {},
-    savedVideogames: []
+    savedVideogames: [],
+    selectedFilters: {},
+    selectedOrder: null,
   };
   
   const rootReducer = (state = initialState, { type, payload }) => {
@@ -98,6 +102,16 @@ import {
               ...state,
               filteredVideogames: allVideogamesCopy2,
           };
+      case SET_SELECTED_ORDER:
+        return {
+          ...state,
+          selectedOrder: payload,
+        };
+      case SET_SELECTED_FILTERS:
+        return {
+          ...state,
+          selectedFilters: payload,
+        };
       default:
         return state;
     }
