@@ -43,8 +43,8 @@ export const Detail = ({videogame, savedVideogames, fetchById, cleanDetail, save
         return cleanDetail()
     }, [fetchById, cleanDetail, id])
 
-    if (!videogame) {
-      return <div>Loading...</div>;
+    if (!videogame.name) {
+      return <div className={styles.loading}>Loading videogame...</div>;
     }
      
     return (

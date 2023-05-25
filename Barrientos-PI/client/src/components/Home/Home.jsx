@@ -16,17 +16,24 @@ export const Home = ({videogames, filteredVideogames, savedVideogames, fetchVide
 
   const gamesToPaginate = filteredVideogames.length > 0 ? filteredVideogames : videogames;
 
+  const totalItems = gamesToPaginate.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   const currentGames = gamesToPaginate.slice(indexOfFirstItem, indexOfLastItem);
    
   const goToNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
   };
   
   const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
   
     useEffect(() => {
@@ -46,7 +53,7 @@ return (
           <button onClick={goToPreviousPage} disabled={currentPage === 1} className={styles.paginationButton}>
           &#8592;</button>
           <span className={styles.currentPage}>{currentPage}</span>
-          <button onClick={goToNextPage} disabled={indexOfLastItem >= videogames.length} className={styles.paginationButton}>
+          <button onClick={goToNextPage} disabled={indexOfLastItem >= videogames.length || currentPage === totalPages} className={styles.paginationButton}>
           &#8594;</button>
       </div>
     

@@ -154,6 +154,12 @@
   div.backButtonContainer button.backButton {
     margin-top: 0.5em;
   }
+
+  .loading {
+    margin-top: 100px;
+    font-size: 30px;
+    font-weight: 400;
+  }
   
   @media only screen and (max-width: 768px) {
     .title {
