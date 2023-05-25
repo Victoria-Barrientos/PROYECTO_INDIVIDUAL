@@ -6,10 +6,10 @@ const { Videogame, conn } = require('../../src/db.js');
 
 const agent = session(app);
 const videogame = {
-  name: 'Super Mariana Bros',
-  description: "Un fontanero llamado Mario viaja por un laberinto subterráneo con su hermano, Luigi, intentando salvar a una princesa capturada.",
+  name: 'Super Marian Sis',
+  description: "Una fontanera llamada Marian viaja por un laberinto subterráneo con su hermana, Luigina, intentando salvar a un principe capturado.",
   releaseDate: '1985-09-13',
-  image: 'https://www.example.com/supermariobros.png',
+  image: 'https://images.unsplash.com/photo-1612404459571-ccef4b6588e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
   rating: 4,
   genres: [ "Action", "Adventure" ],
   platforms: [ "PlayStation 5", "Xbox Series S/X", "Nintendo Entertainment System (NES)" ]
@@ -34,33 +34,33 @@ describe('Videogame routes', () => {
     });
   });
 
-  // describe('POST /videogames', () => {
-  //   beforeEach(async () => {
-  //     await Videogame.destroy({
-  //       where: {},
-  //       truncate: true,
-  //     });
-  //   });
+  describe('POST /videogames', () => {
+    beforeEach(async () => {
+      await Videogame.destroy({
+        where: {},
+        truncate: true,
+      });
+    });
   
-  //   it('should create a new videogame', async () => {
-  //     const newGame = {
-  //       name: 'Super Mariana Bros',
-  //       description: 'A plumber named Mariana travels through an underground labyrinth with his brother, Lugi, trying to save a captured princess.',
-  //       platforms: ['Nintendo Switch', 'PlayStation 5', 'Xbox Series S/X'],
-  //       releaseDate: '2022-02-10T00:00:00.000Z',
-  //       image: 'https://www.example.com/supermarianabros.png',
-  //       rating: 4.5,
-  //       genres: ['action']
-  //     };
+    it('should create a new videogame', async () => {
+      const videogame = {
+        name: 'Super Marian Sis',
+        description: "Una fontanera llamada Marian viaja por un laberinto subterráneo con su hermana, Luigina, intentando salvar a un principe capturado.",
+        releaseDate: '1985-09-13',
+        image: 'https://images.unsplash.com/photo-1612404459571-ccef4b6588e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
+        rating: 4,
+        genres: [ "Action", "Adventure" ],
+        platforms: [ "PlayStation 5", "Xbox Series S/X", "Nintendo Entertainment System (NES)" ]
+      };
   
-  //     const response = await agent
-  //     .post('/videogames')
-  //     .send(newGame);
+      const response = await agent
+      .post('/videogames')
+      .send(videogame);
   
-  //     expect(response.statusCode).toBe(201);
-  //     expect(response.body.videogame.name).toBe('Super Mariana Bros');
-  //   });
-  // });
+      expect(response.statusCode).to.equal(201);
+      expect(response.body.videogame.name).to.equal('Super Marian Sis');
+    });
+  });
   
     
   });  
