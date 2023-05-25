@@ -22,8 +22,6 @@ export default function NewGame() {
     const [errors, setErrors] = useState(
         {}
     );
-
-    const [newVideoGame, setNewVideoGame] = useState(null);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [isFormValid, setIsFormValid] = useState(false)
@@ -67,10 +65,9 @@ export default function NewGame() {
               "Content-Type": "application/json",
             }
           });
-          setNewVideoGame(data.videoGame);
           setMessage(data.message);
         } catch (error) {
-          setError('Video game couldn\'t be created. Please, complete the form before submitting');
+          setError(`An error occurred, the ${error.response.data.message}. Please choose a different one`)
         }
       };
 

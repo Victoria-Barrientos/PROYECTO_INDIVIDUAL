@@ -115,11 +115,14 @@ import {
         };
       case DESTROY_VIDEOGAME:
         const updatedVideoGames = state.allVideogames.filter((game) => game.id !== payload);
+        const removeFilteredVideogames = state.filteredVideogames.filter((game) => game.id !== payload);
+        const removeSavedVideogames = state.savedVideogames.filter((game) => game.id !== payload);
         return {
           ...state,
-          selectedFilters: {},
-          allVideogames: updatedVideoGames
-        }
+          allVideogames: updatedVideoGames,
+          filteredVideogames: removeFilteredVideogames,
+          savedVideogames: removeSavedVideogames
+        };
       default:
         return state;
     }
