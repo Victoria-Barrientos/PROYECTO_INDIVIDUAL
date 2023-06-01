@@ -8,6 +8,7 @@ import {
   FILTER_BY_GENRE,
   FILTER_BY_ORIGIN,
   FILTER_BY_RATING,
+  FILTER_BY_DATE,
   SAVE_VIDEOGAME,
   REMOVE_SAVED_VIDEOGAME,
   SET_SELECTED_FILTERS,
@@ -123,6 +124,13 @@ export const filterByOrigin = (selectedFilters) => {
     payload: selectedFilters.Origin
   }
 };
+
+export const filterByDate = (selectedFilters) => {
+  return {
+    type: FILTER_BY_DATE,
+    payload: selectedFilters.Date
+  }
+}
 
 export const setSelectedFilters = (selectedFilters) => {
   return {

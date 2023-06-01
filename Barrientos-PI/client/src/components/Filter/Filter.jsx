@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { connect } from "react-redux";
-import { filterByGenre, filterByOrigin, filterByLetter, filterByRating, setSelectedOrder, setSelectedFilters } from '../../redux/actions';
+import { filterByGenre, filterByOrigin, filterByLetter, filterByRating, filterByDate, setSelectedOrder, setSelectedFilters } from '../../redux/actions';
 import styles from './Filter.module.css';
 
-export const Filter = ({filterByGenre, filterByOrigin, filterByLetter, filterByRating,
+export const Filter = ({filterByGenre, filterByOrigin, filterByLetter, filterByRating, filterByDate,
     selectedFilters, selectedOrder, setSelectedOrder, setSelectedFilters}) => {
 
         const [localFilters, setLocalFilters] = useState(selectedFilters);
@@ -37,7 +37,8 @@ export const Filter = ({filterByGenre, filterByOrigin, filterByLetter, filterByR
         filterByRating(localFilters);
         filterByGenre(localFilters);
         filterByOrigin(localFilters);
-      }, [localFilters, filterByLetter, filterByRating, filterByGenre, filterByOrigin]);
+        filterByDate(localFilters);
+      }, [localFilters, filterByLetter, filterByRating, filterByGenre, filterByOrigin, filterByDate]);
     
       
   return (
@@ -93,6 +94,15 @@ export const Filter = ({filterByGenre, filterByOrigin, filterByLetter, filterByR
                         <option value="DB">DB</option>
                     </select>
                 </div>
+
+                {/* <div className={styles.selectContainer}>
+                    <label>Date</label>
+                    <select name="Date" value={localFilters?.Date} onChange={handleFilters} className={styles.select}>
+                        <option></option>
+                        <option value="OLD">Oldest-Newest</option>
+                        <option value="NEW">Newest-Oldest</option>
+                    </select>
+                </div> */}
                 
                 <div className={styles.selectContainer}>
                 <label>Genres</label>
@@ -141,6 +151,7 @@ const mapDispatchToProps = (dispatch) => {
         filterByGenre: (localFilters) => { dispatch(filterByGenre(localFilters)) },
         filterByOrigin: (localFilters) => { dispatch(filterByOrigin(localFilters))},
         filterByRating: (localFilters) => { dispatch(filterByRating(localFilters))},
+        filterByDate: (localFilters) => { dispatch(filterByDate(localFilters))},
         setSelectedOrder: (order) => { dispatch(setSelectedOrder(order))},
         setSelectedFilters: (localFilters) => { dispatch(setSelectedFilters(localFilters)) }
     }

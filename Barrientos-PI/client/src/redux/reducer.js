@@ -7,6 +7,7 @@ import {
     FILTER_BY_GENRE,
     FILTER_BY_ORIGIN,
     FILTER_BY_RATING,
+    FILTER_BY_DATE,
     SAVE_VIDEOGAME,
     REMOVE_SAVED_VIDEOGAME,
     SET_SELECTED_ORDER,
@@ -103,6 +104,18 @@ import {
               ...state,
               filteredVideogames: allVideogamesCopy2,
           };
+      case FILTER_BY_DATE:
+        let filteredByDate = state.filteredVideogames.length ? state.filteredVideogames : state.allVideogames;
+        if (payload === "NEW") {
+          filteredByDate = filteredByDate.sort((a, b) => a.releaseDate - b.releaseDate)
+        }
+        if (payload === "OLD") {
+          filteredByDate = filteredByDate.sort((a, b) => b.releaseDate - a.releaseDate)
+        }
+        return {
+          ...state,
+          filteredVideogames: filteredByDate
+        }
       case SET_SELECTED_ORDER:
         return {
           ...state,
