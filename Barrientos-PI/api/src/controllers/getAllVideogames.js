@@ -30,6 +30,15 @@ const getAllVideoGames = async () => {
       };
     });
 
+    // const savedVideoGames = await Videogame.bulkCreate(videoGames);
+
+    // for (const videoGame of savedVideoGames) {
+    //   const genreNames = await Genre.findAll({
+    //     where: { name: videoGame.genres }
+    //   });
+    //   await videoGame.addGenre(genreNames);
+    // }
+
     const videoGamesInDb = await Videogame.findAll({
       include: [{
         model: Genre,

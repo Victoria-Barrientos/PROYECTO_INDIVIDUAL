@@ -11,7 +11,7 @@ const getVideogames = async (req, res) => {
         if (error.response && error.response.status === 401) {
             return res.status(401).send({ message: 'Unauthorized' });
         };
-        return res.status(500).send({ message: error.message });
+        return res.status(500).send(error.message);
     }
 };
 
